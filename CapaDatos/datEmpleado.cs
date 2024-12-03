@@ -109,7 +109,7 @@ namespace CapaDatos
                 if (dr.Read())
                 {
                     p = new entEmpleado();
-                    
+                    p.idEmpleado = Convert.ToInt32(dr["idEmpleado"]);
                     p.nombres = Convert.ToString(dr["nombre"]);
                     p.apellidos = Convert.ToString(dr["marca"]);
                     p.documentoIdentidad = Convert.ToString(dr["cantidad"]);
