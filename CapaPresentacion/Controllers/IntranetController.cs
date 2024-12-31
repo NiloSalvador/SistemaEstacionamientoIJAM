@@ -40,9 +40,9 @@ namespace CapaPresentacion.Controllers
             {
                 return RedirectToAction("InicioSesion", "Intranet", new { msg = ex.Message });
             }
-            
         }
 
+        [Filtros.SesionIntranetController]
         public ActionResult MenuPrincipal()
         {
             return View();

@@ -341,7 +341,11 @@ label {
 }
 
 button {
-  border-radius: 0;
+  background: blue;
+  color: white;
+  border-radius: 1px;
+  padding: 2px;
+  margin: 2px;
 }
 
 button:focus:not(:focus-visible) {

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CapaEntidades.entEmpleado>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Lista de Empleados</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Tabla
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary btn-block" href="@Url.Action("Insertar","Empleado")">Nuevo empleado</a>
+            <hr />
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Documento de Identidad</th>
+                        <th>Celular</th>
+                        <th>Correo</th>
+                        <th>Cargo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Documento de Identidad</th>
+                        <th>Celular</th>
+                        <th>Correo</th>
+                        <th>Cargo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idEmpleado</td>
+                            <td>@item.apellidos</td>
+                            <td>@item.nombres</td>
+                            <td>@item.documentoIdentidad</td>
+                            <td>@item.celular</td>
+                            <td>@item.correo</td>
+                            <td>@item.cargo</td>
+                            <td>
+                                <a class="btn btn-primary btn-block" href="@Url.Action("Editar","Empleado", new { idEmpleado = item.idEmpleado })">Editar</a>
+                                <a class="btn btn-primary btn-block" href="@Url.Action("Eliminar","Empleado", new { idEmpleado = item.idEmpleado })">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

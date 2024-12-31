@@ -20,7 +20,7 @@ namespace CapaEntidades
         public string cargo { get; set; }
         public string usuario { get; set; }
         public string contrasena { get; set; }
-        public string estado { get; set; }
+        public Boolean estado { get; set; }
 
         
     }

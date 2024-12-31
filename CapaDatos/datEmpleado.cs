@@ -50,7 +50,7 @@ namespace CapaDatos
                         e.sexo = Convert.ToString(dr["sexo"]);
                         e.fechaNacimiento = Convert.ToDateTime(dr["fechaNacimiento"]);
                         e.cargo = Convert.ToString(dr["cargo"]);
-                        e.estado = Convert.ToString(dr["estado"]);
+                        e.estado = Convert.ToBoolean(dr["estado"]);
                     }
                     cn.Close();
                 }
@@ -68,20 +68,24 @@ namespace CapaDatos
                 try
                 {
                     SqlConnection cn = Conexion.Instancia.Conectar(); //Conexion a la base de datos
-                    cmd = new SqlCommand("spListarEmpleados", cn);  //Consulta a la base de datos
+                    cmd = new SqlCommand("spListarEmpleado", cn);  //Consulta a la base de datos
                     cmd.CommandType = CommandType.StoredProcedure;
                     cn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         entEmpleado p = new entEmpleado();
-                        p.idEmpleado = Convert.ToInt32(dr["identEmpleado"]);
-                        p.nombres = Convert.ToString(dr["nombre"]);
-                        p.apellidos = Convert.ToString(dr["marca"]);
-                        p.documentoIdentidad = Convert.ToString(dr["cantidad"]);
-                        p.tipoDocumentoIdentidad = Convert.ToString(dr["precio"]);
-                        p.celular = Convert.ToString(dr["descripcion"]);
-                        p.correo = Convert.ToString(dr["estado"]);
+                        p.idEmpleado = Convert.ToInt32(dr["idEmpleado"]);
+                        p.nombres = Convert.ToString(dr["nombres"]);
+                        p.apellidos = Convert.ToString(dr["apellidos"]);
+                        p.documentoIdentidad = Convert.ToString(dr["documentoIdentidad"]);
+                        p.tipoDocumentoIdentidad = Convert.ToString(dr["tipoDocumentoIdentidad"]);
+                        p.celular = Convert.ToString(dr["celular"]);
+                        p.correo = Convert.ToString(dr["correo"]);
+                        p.sexo = Convert.ToString(dr["sexo"]);
+                        p.fechaNacimiento = Convert.ToDateTime(dr["fechaNacimiento"]);
+                        p.cargo = Convert.ToString(dr["cargo"]);
+
                         lista.Add(p);
                     }
                     cn.Close();
@@ -110,13 +114,16 @@ namespace CapaDatos
                     {
                         p = new entEmpleado();
                         p.idEmpleado = Convert.ToInt32(dr["idEmpleado"]);
-                        p.nombres = Convert.ToString(dr["nombre"]);
-                        p.apellidos = Convert.ToString(dr["marca"]);
-                        p.documentoIdentidad = Convert.ToString(dr["cantidad"]);
-                        p.tipoDocumentoIdentidad = Convert.ToString(dr["precio"]);
-                        p.celular = Convert.ToString(dr["descripcion"]);
-                        p.correo = Convert.ToString(dr["estado"]);
-                    }
+                        p.nombres = Convert.ToString(dr["nombres"]);
+                        p.apellidos = Convert.ToString(dr["apellidos"]);
+                        p.documentoIdentidad = Convert.ToString(dr["documentoIdentidad"]);
+                        p.tipoDocumentoIdentidad = Convert.ToString(dr["tipoDocumentoIdentidad"]);
+                        p.celular = Convert.ToString(dr["celular"]);
+                        p.correo = Convert.ToString(dr["correo"]);
+                        p.sexo = Convert.ToString(dr["sexo"]);
+                        p.fechaNacimiento = Convert.ToDateTime(dr["fechaNacimiento"]);
+                        p.cargo = Convert.ToString(dr["cargo"]);
+                }
                     cn.Close();
                 }
                 catch (SqlException ex)
@@ -147,7 +154,6 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@prmCargo", p.cargo);
                     cmd.Parameters.AddWithValue("@prmUsuario", p.usuario);
                     cmd.Parameters.AddWithValue("@prmContrasena", p.contrasena);
-                    cmd.Parameters.AddWithValue("@prmEstado", p.estado);
                     cn.Open();
                     int i = cmd.ExecuteNonQuery();
                     if (i > 0) inserto = true;
@@ -181,7 +187,6 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("@prmCargo", e.cargo);
                     cmd.Parameters.AddWithValue("@prmUsuario", e.usuario);
                     cmd.Parameters.AddWithValue("@prmContrasena", e.contrasena);
-                    cmd.Parameters.AddWithValue("@prmEstado", e.estado);
                     cn.Open();
                     int i = cmd.ExecuteNonQuery();
                     if (i > 0) edito = true;
